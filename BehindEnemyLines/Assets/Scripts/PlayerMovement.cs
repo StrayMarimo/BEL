@@ -8,13 +8,16 @@ public class PlayerMovement : MonoBehaviour
     private float Move;
     public float jump;
     public bool isJumping;
+    private bool isWalking, isRunning;
     private Rigidbody2D rb;
+    private SpriteRenderer p_SpriteRenderer;
     Animator p_Animator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         p_Animator = gameObject.GetComponent<Animator>();
+        p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
     }
 
@@ -25,14 +28,38 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(speed * Move, rb.velocity.y);
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) {
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && !isJumping) 
+        {
+            if (Move < 0) {
+                p_SpriteRenderer.flipX = true;
+            } else {
+                p_SpriteRenderer.flipX = false;
+            }
+
             p_Animator.ResetTrigger("Idle");
-            p_Animator.SetTrigger("Walk");
+            if (isWalking) 
+            {
+                p_Animator.SetTrigger("Run");
+                isRunning = true;
+            } else 
+            {
+                p_Animator.SetTrigger("Walk");
+                isWalking = true;
+                isRunning = false;
+            }   
+           
+        } else 
+        {
+            if (isRunning)
+                p_Animator.ResetTrigger("Run");
+            else
+                p_Animator.ResetTrigger("Walk");
+            
+            p_Animator.SetTrigger("Idle");
+            isWalking = false;
         }
 
-        
-
-        if(Input.GetButtonDown("Jump") && isJumping == false) 
+        if(Input.GetButtonDown("Jump") && !isJumping) 
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
