@@ -7,16 +7,18 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private float Move;
     public float jump;
-    public bool isJumping;
-    private bool isWalking, isRunning;
+    public bool isInBulletZone;
+    private int jumpableCount = 0;
+    private bool canJump {get { return jumpableCount > 0;}}
+   
     private Rigidbody2D rb;
     private SpriteRenderer p_SpriteRenderer;
-    Animator p_Animator;
+    private Animator p_Animator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        p_Animator = gameObject.GetComponent<Animator>();
+        p_Animator = GetComponent<Animator>();
         p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
     }
@@ -28,40 +30,51 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(speed * Move, rb.velocity.y);
 
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && !isJumping) 
+        // Direction
+        if (Move < 0) 
         {
-            if (Move < 0) {
-                p_SpriteRenderer.flipX = true;
-            } else {
-                p_SpriteRenderer.flipX = false;
-            }
-
-            p_Animator.ResetTrigger("Idle");
-            if (isWalking) 
-            {
-                p_Animator.SetTrigger("Run");
-                isRunning = true;
-            } else 
-            {
-                p_Animator.SetTrigger("Walk");
-                isWalking = true;
-                isRunning = false;
-            }   
-           
-        } else 
+            p_SpriteRenderer.flipX = true;
+        } else if (Move > 0)
         {
-            if (isRunning)
-                p_Animator.ResetTrigger("Run");
-            else
-                p_Animator.ResetTrigger("Walk");
-            
-            p_Animator.SetTrigger("Idle");
-            isWalking = false;
+            p_SpriteRenderer.flipX = false;
         }
 
-        if(Input.GetButtonDown("Jump") && !isJumping) 
+        // Animations
+        if (rb.velocity.x == 0 || !canJump)
+        {
+            // Idle
+            p_Animator.SetFloat("Speed", 0);
+        } else if (!Input.GetKey(KeyCode.LeftShift)) 
+        {
+            // Walk
+            p_Animator.SetFloat("Speed", 0.5f);
+            speed = 5;
+        } else 
+        {
+            // Run
+            p_Animator.SetFloat("Speed", 1);
+            speed = 10;
+        }
+
+        
+        if(Input.GetButtonDown("Jump") && canJump) 
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
+        }
+    }
+
+
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jumpableCount--;
+        }
+
+        if (other.gameObject.CompareTag("BulletZone"))
+        {
+            isInBulletZone = true;
         }
     }
 
@@ -69,15 +82,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Ground"))
         {
-            isJumping = false;
+           jumpableCount++;
+        }
+
+        if (other.gameObject.CompareTag("BulletZone"))
+        {
+            isInBulletZone = false;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = true;
-        }
-    }
 }

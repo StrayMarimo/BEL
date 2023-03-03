@@ -26,12 +26,12 @@ public class DeathScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             p_Animator = other.gameObject.GetComponent<Animator>();
-            p_Animator.ResetTrigger("Walk");
             p_Animator.SetTrigger("Dead");
             await Task.Delay(500);
             Player.transform.position = startPoint.transform.position;
-            p_Animator.ResetTrigger("Dead");
-            p_Animator.SetTrigger("Idle");
+            Camera.main.transform.position = startPoint.transform.position;
         }
     }
+
+    
 }
