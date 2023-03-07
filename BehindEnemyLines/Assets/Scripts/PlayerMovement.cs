@@ -27,9 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move = Input.GetAxis("Horizontal");
-
         rb.velocity = new Vector2(speed * Move, rb.velocity.y);
-
         // Direction
         if (Move < 0) 
         {
