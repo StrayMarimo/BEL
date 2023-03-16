@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer p_SpriteRenderer;
     private Animator p_Animator;
+    float time = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // delay user from spamming jump button
+        if (time > 0f) 
+        {
+            time -= Time.deltaTime;
+        }
         Move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(speed * Move, rb.velocity.y);
         // Direction
@@ -55,9 +61,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
-        if(Input.GetButtonDown("Jump") && canJump) 
+        if(Input.GetButtonDown("Jump") && canJump && time <= 0) 
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
+            time = 0.5f;
         }
     }
 
