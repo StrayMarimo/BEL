@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour
                     Screen.height,
                     0));
 
-        if (Player.transform.position.x < lowerLeft.x)
+        if (Player.transform.position.x < lowerLeft.x || Player.transform.position.y < lowerLeft.y)
         {
             Player.transform.position = startPoint.transform.position;
             Camera.main.transform.position = startPoint.transform.position;

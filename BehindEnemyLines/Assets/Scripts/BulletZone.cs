@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BulletZone : MonoBehaviour
 {
-    public GameObject Player;
+    private GameObject Player;
     private bool isInBulletZone;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame

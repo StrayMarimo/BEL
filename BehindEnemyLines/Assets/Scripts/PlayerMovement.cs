@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // delay user from spamming jump button
-        if (time > 0f) 
+        if (time > 0f)  
         {
             time -= Time.deltaTime;
         }

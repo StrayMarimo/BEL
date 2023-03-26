@@ -13,7 +13,7 @@ public class RoadTileRandomizer : MonoBehaviour
         spriteArray = Resources.LoadAll<Sprite>(sprite);
         roadSpriteRenderer = GetComponent<SpriteRenderer>();
         roadSpriteRenderer.sprite = spriteArray[Random.Range(0, 8)];
-        gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<BoxCollider2D>();
         
     }
 
