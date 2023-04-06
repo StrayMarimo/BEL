@@ -1,54 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed = 2f;
-    private Vector3 newPosition;
-    private float objectWidth;
-    public GameObject Player;
-    public GameObject startPoint;
-    
+    /* New Camera movement */
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        newPosition = transform.position;
-        objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-    }
+    public float smoothTime = 0.3f;
+    public float verticalOffset = 1.5f;
+    private Vector3 velocity = Vector3.zero;
+    public GameObject Player;
 
     // Update is called once per frame
     void Update()
     {
-        newPosition.x = transform.position.x + Time.deltaTime * speed;
-        transform.position = newPosition;
-
-        var lowerLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        var upperRight =
-            Camera
-                .main
-                .ScreenToWorldPoint(new Vector3(Screen.width,
-                    Screen.height,
-                    0));
-
-        if (Player.transform.position.x < lowerLeft.x || Player.transform.position.y < lowerLeft.y)
-        {
-            Player.transform.position = startPoint.transform.position;
-            Camera.main.transform.position = startPoint.transform.position;
-        }
-        else if (Player.transform.position.x > upperRight.x)
-        {
-            Player.transform.position =
-                new Vector3(upperRight.x,
-                    Player.transform.position.y,
-                    Player.transform.position.z);
-        }
-
-        transform.position =
-            new Vector3(Mathf
-                    .Clamp(transform.position.x, lowerLeft.x + objectWidth, upperRight.x - objectWidth),
-                transform.position.y,
-                transform.position.z);
+        Vector3 targetPosition = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }

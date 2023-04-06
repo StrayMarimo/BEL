@@ -391,9 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8da5c0995a94e96897b3dc7f35bb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  Player: {fileID: 27748343}
-  startPoint: {fileID: 1926581191}
+  playerTransform: {fileID: 27748349}
 --- !u!212 &519420034
 SpriteRenderer:
   m_ObjectHideFlags: 0
