@@ -1,88 +1,57 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wallOfDeath : MonoBehaviour
+public class WallOfDeath : MonoBehaviour
 {
-    public float speed = .005f;
-    // public GameObject Player;
-    // public GameObject startPoint;
+    public float speed = 2f;
+    public float wallOffset = -10f;
+    public Transform playerTransform;
+    public Transform startPointTransform;
+    public Collider2D wallCollider;
 
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    // void Start()
-    // {
-    //     startPoint = transform.position;
-    // }
-
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        // if (Player.transform.position.x <= transform.position.x) {
-        //     Player.transform.position = startPoint.transform.position;
-        //     Camera.main.transform.position = startPoint.transform.position;
-        //     transform.position = startPoint;
-        // }
+        // Ensure that the player and start point are properly assigned
+        if (playerTransform == null || startPointTransform == null)
+        {
+            Debug.LogError("WallOfDeath script: playerTransform or startPointTransform is not assigned!");
+        }
 
-        transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
+        // Ensure that the wall collider is assigned and is set to trigger mode
+        if (wallCollider == null)
+        {
+            Debug.LogError("WallOfDeath script: wallCollider is not assigned!");
+        }
+        else if (!wallCollider.isTrigger)
+        {
+            wallCollider.isTrigger = true;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform == playerTransform)
+        {   
+            Debug.Log("Player collided with wall!");
+
+            // Move player to starting position
+            playerTransform.position = startPointTransform.position;
+
+            // Move camera to starting position
+            Camera.main.transform.position = startPointTransform.position;
+
+            // Move wall to starting position with offset
+            transform.position = new Vector3
+                (
+                    startPointTransform.position.x + wallOffset, 
+                    startPointTransform.position.y, 
+                    startPointTransform.position.z
+                );
+        }
+    }
+
+    void FixedUpdate()
+    {
+        transform.position = new Vector3(transform.position.x + (Time.fixedDeltaTime * speed), transform.position.y, transform.position.z);
     }
 }
-
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-
-// public class CameraMovement : MonoBehaviour
-// {
-//     /* Old Camera movement */
-    
-//     public float speed = 2f;
-//     private Vector3 newPosition;
-//     private float objectWidth;
-//     public GameObject Player;
-//     public GameObject startPoint;
-    
-
-//     // Start is called before the first frame update
-//     void Start()
-//     {
-//         newPosition = transform.position;
-//         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-//     }
-
-//     // Update is called once per frame
-//     void Update()
-//     {
-//         newPosition.x = transform.position.x + Time.deltaTime * speed;
-//         transform.position = newPosition;
-
-//         var lowerLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-//         var upperRight =
-//             Camera
-//                 .main
-//                 .ScreenToWorldPoint(new Vector3(Screen.width,
-//                     Screen.height,
-//                     0));
-
-//         if (Player.transform.position.x < lowerLeft.x || Player.transform.position.y < lowerLeft.y)
-//         {
-//             Player.transform.position = startPoint.transform.position;
-//             Camera.main.transform.position = startPoint.transform.position;
-//         }
-//         else if (Player.transform.position.x > upperRight.x)
-//         {
-//             Player.transform.position =
-//                 new Vector3(upperRight.x,
-//                     Player.transform.position.y,
-//                     Player.transform.position.z);
-//         }
-
-    
-//         transform.position =
-//             new Vector3(Mathf
-//                     .Clamp(transform.position.x, lowerLeft.x + objectWidth, upperRight.x - objectWidth),
-//                 transform.position.y,
-//                 transform.position.z);
-//     }
-
-// }
