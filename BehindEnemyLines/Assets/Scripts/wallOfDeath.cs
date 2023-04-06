@@ -28,6 +28,7 @@ public class WallOfDeath : MonoBehaviour
         }
     }
 
+    // On collision with the wall
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform == playerTransform)
