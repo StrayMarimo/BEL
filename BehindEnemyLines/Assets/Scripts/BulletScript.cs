@@ -24,12 +24,6 @@ public class BulletScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     async private void OnCollisionEnter2D(Collision2D other) 
     {
        
@@ -39,8 +33,15 @@ public class BulletScript : MonoBehaviour
             p_Animator = other.gameObject.GetComponent<Animator>();
             p_Animator.SetTrigger("Dead");
             await Task.Delay(500);
+            
+            // Move player to starting point
             Player.transform.position = startPoint.transform.position;
-            Camera.main.transform.position = startPoint.transform.position;
+            // Move camera to starting point
+            Camera.main.transform.position = new Vector3(startPoint.transform.position.x, startPoint.transform.position.y, startPoint.transform.position.z - 15);
+
+            // Move wall of death to starting point 
+            // TODO
+            // MAKE WALL OF DEATH RESET
         }
         Destroy(gameObject);
     }

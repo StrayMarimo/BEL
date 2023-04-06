@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WallOfDeath : MonoBehaviour
 {
+    public bool shouldMove;
     public float speed = 2f;
     public float wallOffset = -10f;
     public Transform playerTransform;
@@ -39,7 +40,7 @@ public class WallOfDeath : MonoBehaviour
             playerTransform.position = startPointTransform.position;
 
             // Move camera to starting position
-            Camera.main.transform.position = startPointTransform.position;
+            Camera.main.transform.position = new Vector3(startPointTransform.position.x, startPointTransform.position.y, startPointTransform.position.z - 15);
 
             // Move wall to starting position with offset
             transform.position = new Vector3
@@ -53,6 +54,13 @@ public class WallOfDeath : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x + (Time.fixedDeltaTime * speed), transform.position.y, transform.position.z);
+        if (shouldMove) {
+            transform.position = new Vector3
+                (
+                    transform.position.x + (Time.fixedDeltaTime * speed), 
+                    transform.position.y, 
+                    transform.position.z
+                );
+        }
     }
 }
