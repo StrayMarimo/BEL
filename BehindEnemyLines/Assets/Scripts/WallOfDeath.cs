@@ -47,7 +47,7 @@ public class WallOfDeath : MonoBehaviour
                 (
                     startPointTransform.position.x + wallOffset, 
                     startPointTransform.position.y, 
-                    startPointTransform.position.z
+                    startPointTransform.position.z -5
                 );
         }
     }
