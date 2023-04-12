@@ -23,9 +23,4 @@ public class GeneratePlatform : MonoBehaviour
         newPlatform.transform.parent = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
