@@ -19,10 +19,12 @@ public class GenerateRoad : MonoBehaviour
         // Initialize the y-coordinate of the new position
         newPosition.y = transform.position.y;
 
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < rows; i++)
+        {
             // Initialize the x-coordinate of the new position
             newPosition.x = transform.position.x;
-            for (int j = 0; j < columns; j++) {
+            for (int j = 0; j < columns; j++)
+            {
                 // Instantiate a new road tile at the current position
                 var newRoad = Instantiate(roadTile, newPosition, transform.rotation);
 
@@ -34,20 +36,26 @@ public class GenerateRoad : MonoBehaviour
 
                 // If this is a wall and we're not on the top row, remove the "Untagged" tag from the road tile
                 // so that the player can only jump on the top of a wall
-                if (isWall && i != rows - 1) {
+                if (isWall && i != rows - 1)
+                {
                     newRoad.tag = "Untagged";
                 }
             }
             // Move the y-coordinate of the new position up by the height of the tile
             newPosition.y += tileSpriteRenderer.bounds.size.y;
         }
-      
+
+        var compCollider = gameObject.AddComponent<CompositeCollider2D>();
+        var rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        compCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
+        gameObject.tag = "Ground";
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
