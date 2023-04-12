@@ -393,6 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothTime: 0.2
   Target: {fileID: 27748343}
+  wallOffset: -10
 --- !u!212 &519420034
 SpriteRenderer:
   m_ObjectHideFlags: 0
