@@ -53,7 +53,7 @@ public class BulletScript : MonoBehaviour
             wallOfDeath.transform.position = new Vector3
             (
                     startPoint.transform.position.x + wallOffset,
-                    startPoint.transform.position.y,
+                    startPoint.transform.position.y - 2.69f,
                     startPoint.transform.position.z - 5
             );
         }
