@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// attached to Player
+// handles player movement and transition animations
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private float Move;
     public float jump;
     public bool isInBulletZone;
-    private int jumpableCount = 0;
-    private bool canJump {get { return jumpableCount > 0;}}
-   
+    private int jumpableCount = 0;  // counter to keep track of how many jumpable surfaces are below the player
+    private bool canJump {get { return jumpableCount > 0;}} // a property indicating whether the player can jump
+
     private Rigidbody2D rb;
     private SpriteRenderer p_SpriteRenderer;
     private Animator p_Animator;
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get references to the game objects and components
         rb = GetComponent<Rigidbody2D>();
         p_Animator = GetComponent<Animator>();
         p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -30,11 +31,12 @@ public class PlayerMovement : MonoBehaviour
         // delay user from spamming jump button
         if (time > 0f)  
         {
-            time -= Time.deltaTime;
+            time -= Time.deltaTime;  // reduces the delay timer by the time elapsed since the last frame
         }
-        Move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(speed * Move, rb.velocity.y);
-        // Direction
+        Move = Input.GetAxis("Horizontal");  // gets the player's horizontal input
+        rb.velocity = new Vector2(speed * Move, rb.velocity.y);  // sets the player's velocity based on the horizontal input
+        
+        // flips player facing to direction it is moving
         if (Move < 0) 
         {
             p_SpriteRenderer.flipX = true;
@@ -63,37 +65,41 @@ public class PlayerMovement : MonoBehaviour
         
         if(Input.GetButtonDown("Jump") && canJump && time <= 0) 
         {
+            // Jump
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             time = 0.5f;
         }
     }
 
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jumpableCount++;
+        }
+
+        if (other.gameObject.CompareTag("BulletZone"))
+        {
+            // Player entered the bullet xone
+            isInBulletZone = true;
+        }
+    }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            jumpableCount--;
+            jumpableCount--; // reduces the jumpable count if the player exits a jumpable surface
         }
 
         if (other.gameObject.CompareTag("BulletZone"))
         {
-            isInBulletZone = true;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.CompareTag("Ground"))
-        {
-           jumpableCount++;
-        }
-
-        if (other.gameObject.CompareTag("BulletZone"))
-        {
+            // Player exited the bullet zone
             isInBulletZone = false;
         }
     }
+
+
 
 }

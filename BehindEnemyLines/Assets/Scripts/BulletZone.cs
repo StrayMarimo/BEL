@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// attached to Bullet Zone Game Object
+// Toggles isInBulletZone variable of playermovement script
 using UnityEngine;
 
 public class BulletZone : MonoBehaviour
@@ -11,20 +11,15 @@ public class BulletZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         Player = GameObject.FindGameObjectWithTag("Player");
+        // Get references to player
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // If player collided with the bullet zone
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Is in bullet Zone ");
+            // Set the player's isInBulletZone flag to true
             Player.GetComponent<PlayerMovement>().isInBulletZone = true;
         }
 
@@ -32,8 +27,10 @@ public class BulletZone : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        // If player exits the bullet zone
         if (other.gameObject.CompareTag("Player"))
         {
+            // Set the player's isInBulletZone flag to false
             Player.GetComponent<PlayerMovement>().isInBulletZone = false;
         }
 
