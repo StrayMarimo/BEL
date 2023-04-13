@@ -22,4 +22,8 @@ public class MainMenu : MonoBehaviour
     public void StartLevel() {
         SceneManager.LoadScene(4);
     }
+
+    public void SelectMessenger() {
+        
+    }
 }
