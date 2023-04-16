@@ -46,7 +46,7 @@ public class WallOfDeath : MonoBehaviour
             transform.position = new Vector3
                 (
                     startPointTransform.position.x + wallOffset, 
-                    startPointTransform.position.y, 
+                    startPointTransform.position.y -2.69f, 
                     startPointTransform.position.z -5
                 );
         }

@@ -20,7 +20,9 @@ public class RoadTileRandomizer : MonoBehaviour
         roadSpriteRenderer.sprite = spriteArray[Random.Range(0, 8)];
 
         // Add a BoxCollider2D component to the current game object
-        gameObject.AddComponent<BoxCollider2D>();
+        var boxCollider = gameObject.AddComponent<BoxCollider2D>();
+        boxCollider.usedByComposite = true;
+
         
     }
 }
