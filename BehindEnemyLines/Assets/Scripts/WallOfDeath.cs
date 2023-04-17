@@ -85,7 +85,7 @@ public class WallOfDeath : MonoBehaviour
             {
                 // Spawn a new game object
                 // Vector3 spawnPos = transform.position + new Vector3(spawnOffset, transform.position.y, 0);
-                Vector3 spawnPos = new Vector3(transform.position.x + spawnOffset, transform.position.y + -4.6f, transform.position.z + 3);
+                Vector3 spawnPos = new Vector3(transform.position.x + spawnOffset, transform.position.y + -4.6f, transform.position.z + 1);
                 Instantiate(gameObjPrefab, spawnPos, Quaternion.identity);
                 lastSpawnPos += spawnInterval;
             }
