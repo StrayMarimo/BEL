@@ -12,6 +12,7 @@ public class WallOfDeath : MonoBehaviour
 
     void Start()
     {
+        // startPointTransform.position = this.transform.position;
         // Ensure that the player and start point are properly assigned
         if (playerTransform == null || startPointTransform == null)
         {
@@ -46,8 +47,8 @@ public class WallOfDeath : MonoBehaviour
             transform.position = new Vector3
                 (
                     startPointTransform.position.x + wallOffset, 
-                    startPointTransform.position.y -2.69f, 
-                    startPointTransform.position.z -5
+                    startPointTransform.position.y + .3f, 
+                    startPointTransform.position.z
                 );
         }
     }
