@@ -21,6 +21,7 @@ public class GeneratePlatform : MonoBehaviour
 
         // Set the new platform's parent to be the spawner object, so that it moves along with it
         newPlatform.transform.parent = transform;
+        transform.name = randomPlatform.name;
     }
 
 }

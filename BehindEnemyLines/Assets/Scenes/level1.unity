@@ -159,6 +159,8 @@ MonoBehaviour:
   speed: 5
   jump: 500
   isInBulletZone: 0
+  onDeath: {fileID: 1793566834}
+  fireSpawnScript: {fileID: 1098191617}
   Score: {fileID: 0}
   totalScore: 0
 --- !u!61 &27748345
@@ -1575,12 +1577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8558d8ba34230e14bab134e846e09bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeath: {fileID: 1793566834}
-  fireSpawnScript: {fileID: 1098191617}
   shouldMove: 1
   speed: 3
   wallOffset: -10
-  playerTransform: {fileID: 27748349}
   startPointTransform: {fileID: 1926581192}
   wallCollider: {fileID: 1303882275}
 --- !u!212 &1303882273
@@ -1643,7 +1642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303882271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.24, y: 0.0282, z: 0.5}
+  m_LocalPosition: {x: -10, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 10.146508, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

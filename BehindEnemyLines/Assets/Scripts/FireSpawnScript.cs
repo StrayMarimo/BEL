@@ -17,6 +17,8 @@ public class FireSpawnScript : MonoBehaviour
     {
         wallOfDeath = GameObject.FindGameObjectWithTag("WallOfDeath");
         fireParent = GameObject.FindGameObjectWithTag("FireParent");
+
+        resetFireSpawn();
     }
 
     // Update is called once per frame

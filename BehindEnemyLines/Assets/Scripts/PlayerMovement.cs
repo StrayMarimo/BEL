@@ -18,9 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator p_Animator;
     private GameObject ScoreCanvas;
     float time = 0.5f;
-
+    public OnDeath onDeath; // on Player death script
+    public FireSpawnScript fireSpawnScript; // Fire spawner script
     [SerializeField]
     Text Score;
+    [SerializeField]
     public int totalScore = 0;
     // Start is called before the first frame update
     void Start()
@@ -115,6 +117,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void KillPlayer() {
 
+        // Reset player and camera position
+        onDeath.OnPlayerDeath();
 
+        // Restart flame spawning process
+        fireSpawnScript.resetFireSpawn();
+        fireSpawnScript.clearFire();
+    }
 }
