@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private float Move;
     public float jump;
-    public bool isInBulletZone;
-    public string avatar = "";
     private int jumpableCount = 0;  // counter to keep track of how many jumpable surfaces are below the player
     private bool canJump {get { return jumpableCount > 0;}} // a property indicating whether the player can jump
     private int score = 0;
@@ -18,25 +16,21 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer p_SpriteRenderer;
     private Animator p_Animator;
-    private GameObject ScoreCanvas;
-    float time = 0.5f;
-    public OnDeath onDeath; // on Player death script
-    public FireSpawnScript fireSpawnScript; // Fire spawner script
+    private float time = 0.5f;
+    private PlayerPrefs playerPrefs;
     [SerializeField]
     Text Score;
+
     [SerializeField]
     public int totalScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        avatar = MainMenu.avatar;
-        Debug.Log("Avatar: " + avatar);
-        // Get references to the game objects and components
         rb = GetComponent<Rigidbody2D>();
         p_Animator = GetComponent<Animator>();
         p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        ScoreCanvas = GameObject.FindGameObjectWithTag("Score");
-        Score = ScoreCanvas.GetComponentInChildren<Text>();
+        playerPrefs = gameObject.GetComponent<PlayerPrefs>();
     }
 
     // Update is called once per frame
@@ -64,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
                
         }
         totalScore = score / 50;
-        Score.text = "Score: " + totalScore.ToString();
-
+        playerPrefs.totalScore = totalScore;
         // Animations
         if (rb.velocity.x == 0 || !canJump)
         {
@@ -100,11 +93,6 @@ public class PlayerMovement : MonoBehaviour
             jumpableCount++;
         }
 
-        if (other.gameObject.CompareTag("BulletZone"))
-        {
-            // Player entered the bullet xone
-            isInBulletZone = true;
-        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -113,21 +101,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpableCount--; // reduces the jumpable count if the player exits a jumpable surface
         }
-
-        if (other.gameObject.CompareTag("BulletZone"))
-        {
-            // Player exited the bullet zone
-            isInBulletZone = false;
-        }
     }
 
-    public void KillPlayer() {
-
-        // Reset player and camera position
-        onDeath.OnPlayerDeath();
-
-        // Restart flame spawning process
-        fireSpawnScript.resetFireSpawn();
-        fireSpawnScript.clearFire();
-    }
 }

@@ -12,6 +12,7 @@ public class BulletScript : MonoBehaviour
     private GameObject startPoint;
     private GameObject wallOfDeath;
     public float wallOffset = -10f;
+    private GameObject[] bullets;
 
     void Start()
     {
@@ -44,7 +45,13 @@ public class BulletScript : MonoBehaviour
             // Delay for 500 milliseconds to allow the death animation to play
             await Task.Delay(500);
 
-            Player.GetComponent<PlayerMovement>().KillPlayer();
+            bullets = GameObject.FindGameObjectsWithTag("Bullet");
+
+            foreach (GameObject bullet in bullets) {
+                Destroy(bullet);
+            }
+            
+            Player.GetComponent<PlayerPrefs>().KillPlayer();
         }
         // Destroy the bullet
         Destroy(gameObject);

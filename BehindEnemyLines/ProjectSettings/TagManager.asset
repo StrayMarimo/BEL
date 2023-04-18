@@ -11,6 +11,7 @@ TagManager:
   - Fire
   - FireParent
   - Score
+  - Bullet
   layers:
   - Default
   - TransparentFX

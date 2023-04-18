@@ -38,7 +38,7 @@ public class WallOfDeath : MonoBehaviour
         if (other.transform == Player.transform)
         {   
             Debug.Log("Player collided with wall!");
-            Player.GetComponent<PlayerMovement>().KillPlayer();
+            Player.GetComponent<PlayerPrefs>().KillPlayer();
         }
     }
 

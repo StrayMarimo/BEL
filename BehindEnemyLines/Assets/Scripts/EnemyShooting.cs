@@ -22,7 +22,7 @@ public class EnemyShooting : MonoBehaviour
         timer += Time.deltaTime;
 
         // If the player is in the bullet zone and the timer has reached 2 seconds
-        if (Player.GetComponent<PlayerMovement>().isInBulletZone && timer > 2 )
+        if (Player.GetComponent<PlayerPrefs>().isInBulletZone && timer > 2 )
         {
             // Reset the timer
             timer = 0;

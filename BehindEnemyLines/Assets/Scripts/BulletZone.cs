@@ -20,7 +20,7 @@ public class BulletZone : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Set the player's isInBulletZone flag to true
-            Player.GetComponent<PlayerMovement>().isInBulletZone = true;
+            Player.GetComponent<PlayerPrefs>().isInBulletZone = true;
         }
 
     }
@@ -31,7 +31,7 @@ public class BulletZone : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Set the player's isInBulletZone flag to false
-            Player.GetComponent<PlayerMovement>().isInBulletZone = false;
+            Player.GetComponent<PlayerPrefs>().isInBulletZone = false;
         }
 
     }
