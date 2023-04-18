@@ -3,14 +3,12 @@ using UnityEngine;
 
 public class WallOfDeath : MonoBehaviour
 {
+    public OnDeath OnDeath; // on Player death script
+    public FireSpawnScript fireSpawnScript; // Fire spawner script
+
     public bool shouldMove;  // If the wall should move
     public float speed = 2f; // The speed that the wall moves
-    public float wallOffset = -10f; // The amount of offset that the wall has away from the player on reset
-    public float spawnOffset; // The offset at which to spawn the new game object
-    public float spawnInterval; // The interval at which to spawn the new game object
-    private float lastSpawnPos; // The last position at which the game object was spawned
-    private GameObject[] fires;
-    public GameObject[] fireTypes;
+    public float wallOffset = -10f; // The amount of offset that the wall has away from the player on reset 
     public Transform playerTransform; // Player
     public Transform startPointTransform; // The starting point of the level
     public Collider2D wallCollider; // The collider for the wall
@@ -34,7 +32,7 @@ public class WallOfDeath : MonoBehaviour
             wallCollider.isTrigger = true;
         }
 
-        lastSpawnPos = transform.position.x; // Initialize lastSpawnPos to the starting position of the wall
+        fireSpawnScript.resetFireSpawn(); // Initialize lastSpawnPos to the starting position of the wall
     }
 
     // On collision with the wall
@@ -44,29 +42,12 @@ public class WallOfDeath : MonoBehaviour
         {   
             Debug.Log("Player collided with wall!");
 
-            // Move player to starting position
-            playerTransform.position = startPointTransform.position;
-
-            // Move camera to starting position
-            Camera.main.transform.position = new Vector3(startPointTransform.position.x, startPointTransform.position.y, startPointTransform.position.z - 15);
-
-            // Move wall to starting position with offset
-            transform.position = new Vector3
-                (
-                    startPointTransform.position.x + wallOffset, 
-                    startPointTransform.position.y, 
-                    startPointTransform.position.z + 0.5f
-                );
+            // Reset player and camera position
+            OnDeath.OnPlayerDeath();
 
             // Restart flame spawning process
-            lastSpawnPos = transform.position.x; // Initialize lastSpawnPos to the starting position of the wall
-
-            fires = GameObject.FindGameObjectsWithTag("Fire"); // Store all flame currently present in an array and delete them
-            // Destroy each fire game object 
-            foreach (GameObject flame in fires)
-            {
-                Destroy(flame);
-            }
+            fireSpawnScript.resetFireSpawn();
+            fireSpawnScript.clearFire();
         }
     }
 
@@ -79,18 +60,6 @@ public class WallOfDeath : MonoBehaviour
                     transform.position.y, 
                     transform.position.z
                 );
-
-            // Check if the wall has moved by an amount equal to the spawn interval
-            if (transform.position.x - lastSpawnPos >= spawnInterval)
-            {
-                // Spawn a new game object
-                // Vector3 spawnPos = transform.position + new Vector3(spawnOffset, transform.position.y, 0);
-                Vector3 spawnPos = new Vector3(transform.position.x + spawnOffset, transform.position.y + -4.2f, transform.position.z + 1);
-                Instantiate(fireTypes[Random.Range(0, 5)], spawnPos, Quaternion.identity);
-                lastSpawnPos += spawnInterval;
-            }
-
-
         }
     }
 }

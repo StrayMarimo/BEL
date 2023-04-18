@@ -29,7 +29,7 @@ public class FireScaler : MonoBehaviour
         {
             float newSize = Mathf.MoveTowards(transformComponent.localScale.x, targetSize, scalingSpeed * Time.deltaTime);
             transformComponent.localScale = new Vector3(newSize, newSize, 1f);
-            Debug.Log("Current size: " + transformComponent.localScale);
+            // Debug.Log("Current size: " + transformComponent.localScale);
         }
         // Otherwise, scale the sprite back to the starting size
         else
