@@ -25,7 +25,4 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(4, LoadSceneMode.Single);
     }
 
-    public void SelectMessenger() {
-        
-    }
 }

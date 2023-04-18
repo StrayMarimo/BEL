@@ -11,7 +11,7 @@ public class PlayerPrefs : MonoBehaviour
     public string avatar = "";
 
     [SerializeField, HideInInspector]
-    public int totalScore = 0;
+    public static int totalScore = 0;
 
     [HideInInspector]
     public bool isInBulletZone = false;
@@ -76,6 +76,11 @@ public class PlayerPrefs : MonoBehaviour
         updateLives();
         fireSpawnScript.resetFireSpawn();
         fireSpawnScript.clearFire();
+
+        if (currentLives == 0)
+        {
+            SceneManager.LoadScene(5, LoadSceneMode.Single);
+        }
     }
 
     private void SetAvatar() {

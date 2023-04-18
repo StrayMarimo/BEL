@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Text Score;
 
-    [SerializeField]
     public int totalScore = 0;
 
     // Start is called before the first frame update
@@ -58,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
                
         }
         totalScore = score / 50;
-        playerPrefs.totalScore = totalScore;
+        PlayerPrefs.totalScore = totalScore;
         // Animations
         if (rb.velocity.x == 0 || !canJump)
         {
