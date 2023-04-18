@@ -6,6 +6,7 @@ public class FireSpawnScript : MonoBehaviour
 {
     private GameObject wallOfDeath;
     private GameObject[] fireInstances;
+    private GameObject fireParent;
     public GameObject[] FireVariations;
     public float spawnOffset = 1f; // The offset at which to spawn the new game object
     public float spawnInterval = 0.3f; // The interval at which to spawn the new game object
@@ -15,6 +16,7 @@ public class FireSpawnScript : MonoBehaviour
     void Start()
     {
         wallOfDeath = GameObject.FindGameObjectWithTag("WallOfDeath");
+        fireParent = GameObject.FindGameObjectWithTag("FireParent");
     }
 
     // Update is called once per frame
@@ -25,7 +27,8 @@ public class FireSpawnScript : MonoBehaviour
         {
             // Spawn a new game object
             Vector3 spawnPos = new Vector3(wallOfDeath.transform.position.x + spawnOffset, wallOfDeath.transform.position.y + -4.2f, wallOfDeath.transform.position.z + 1);
-            Instantiate(FireVariations[Random.Range(0, 5)], spawnPos, Quaternion.identity);
+            var newFire = Instantiate(FireVariations[Random.Range(0, 5)], spawnPos, Quaternion.identity);
+            newFire.transform.parent = fireParent.transform;
             lastSpawnPos += spawnInterval;
         }
     }
