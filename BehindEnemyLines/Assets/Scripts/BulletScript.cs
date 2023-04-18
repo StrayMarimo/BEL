@@ -44,18 +44,18 @@ public class BulletScript : MonoBehaviour
             // Delay for 500 milliseconds to allow the death animation to play
             await Task.Delay(500);
 
-            // Move player to starting point
-            Player.transform.position = startPoint.transform.position;
-            // Move camera to starting point
-            Camera.main.transform.position = new Vector3(startPoint.transform.position.x, startPoint.transform.position.y, startPoint.transform.position.z - 15);
+                // Move player to starting point
+                Player.transform.position = startPoint.transform.position;
+                // Move camera to starting point
+                Camera.main.transform.position = new Vector3(startPoint.transform.position.x, startPoint.transform.position.y, startPoint.transform.position.z - 15);
 
-            // Move wall of death to starting point 
-            wallOfDeath.transform.position = new Vector3
-            (
-                    startPoint.transform.position.x + wallOffset,
-                    startPoint.transform.position.y - 2.69f,
-                    startPoint.transform.position.z - 5
-            );
+                // Move wall of death to starting point 
+                wallOfDeath.transform.position = new Vector3
+                (
+                        startPoint.transform.position.x + wallOffset,
+                        startPoint.transform.position.y,
+                        startPoint.transform.position.z + 0.5f
+                );
         }
         // Destroy the bullet
         Destroy(gameObject);

@@ -8,6 +8,7 @@ TagManager:
   - AirBlock
   - BulletZone
   - WallOfDeath
+  - Fire
   layers:
   - Default
   - TransparentFX
