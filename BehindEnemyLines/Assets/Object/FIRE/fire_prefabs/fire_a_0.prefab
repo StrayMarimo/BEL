@@ -122,5 +122,5 @@ MonoBehaviour:
   scalingSpeed: 1
   targetSize: 10
   startSize: 0
-  expiry: 5
+  expiry: 15
   thisFire: {fileID: 4060000879338156047}

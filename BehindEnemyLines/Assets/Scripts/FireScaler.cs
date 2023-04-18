@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FireScaler : MonoBehaviour
 {
-    public bool isScaling = false; // Whether to enable scaling
+    public bool isScaling = true; // Whether to enable scaling
     public float scalingSpeed = 1.0f; // The speed at which to scale the sprite
-    public float targetSize = 2.0f; // The target size to scale the sprite to
-    public float startSize = 1.0f; // The starting size of the sprite
-    public float expiry = 10f;
+    public float targetSize = 10.0f; // The target size to scale the sprite to
+    public float startSize = 0.0f; // The starting size of the sprite
+    public float expiry = 15f;
     public GameObject thisFire;
     private Transform transformComponent; // Reference to the Transform component
 

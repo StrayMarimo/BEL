@@ -1248,9 +1248,14 @@ MonoBehaviour:
   shouldMove: 1
   speed: 1
   wallOffset: -10
-  gameObjPrefab: {fileID: 4060000879338156047, guid: 863b0792d43a046b48e45e1169f61c48, type: 3}
   spawnOffset: 1
   spawnInterval: 0.3
+  fireTypes:
+  - {fileID: 4060000879338156047, guid: 863b0792d43a046b48e45e1169f61c48, type: 3}
+  - {fileID: 1583498257587958473, guid: 3c7e56222f8ab47b58286117e107e635, type: 3}
+  - {fileID: 8617497350780122425, guid: 4d7d01fd7620f4171aec050952e9f0ac, type: 3}
+  - {fileID: 3060087914977355020, guid: cd0356b95942945d3b54851142ce188c, type: 3}
+  - {fileID: 5996039542707584703, guid: 767f70bb769784d6c8c281499d5282a2, type: 3}
   playerTransform: {fileID: 27748349}
   startPointTransform: {fileID: 1926581192}
   wallCollider: {fileID: 1303882275}

@@ -6,11 +6,11 @@ public class WallOfDeath : MonoBehaviour
     public bool shouldMove;  // If the wall should move
     public float speed = 2f; // The speed that the wall moves
     public float wallOffset = -10f; // The amount of offset that the wall has away from the player on reset
-    public GameObject gameObjPrefab; // The prefab of the game object to spawn
     public float spawnOffset; // The offset at which to spawn the new game object
     public float spawnInterval; // The interval at which to spawn the new game object
     private float lastSpawnPos; // The last position at which the game object was spawned
     private GameObject[] fires;
+    public GameObject[] fireTypes;
     public Transform playerTransform; // Player
     public Transform startPointTransform; // The starting point of the level
     public Collider2D wallCollider; // The collider for the wall
@@ -86,7 +86,7 @@ public class WallOfDeath : MonoBehaviour
                 // Spawn a new game object
                 // Vector3 spawnPos = transform.position + new Vector3(spawnOffset, transform.position.y, 0);
                 Vector3 spawnPos = new Vector3(transform.position.x + spawnOffset, transform.position.y + -4.2f, transform.position.z + 1);
-                Instantiate(gameObjPrefab, spawnPos, Quaternion.identity);
+                Instantiate(fireTypes[Random.Range(0, 5)], spawnPos, Quaternion.identity);
                 lastSpawnPos += spawnInterval;
             }
 
