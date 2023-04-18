@@ -23,12 +23,15 @@ public class PlayerPrefs : MonoBehaviour
     public FireSpawnScript fireSpawnScript;
 
     private Text Score;
+    private int currentLives;
+    private int maxLives;
     private GameObject scoreCanvas;
+    private GameObject livesCanvas;
 
     public RuntimeAnimatorController civilianController;
     public RuntimeAnimatorController messengerController;
     public RuntimeAnimatorController veteranController;
-
+    public Image[] heartImages;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +39,14 @@ public class PlayerPrefs : MonoBehaviour
         avatar = MainMenu.avatar;
         playerAnimator = GetComponent<Animator>();
         SetAvatar();
+        currentLives = maxLives;
+       
         scoreCanvas = GameObject.FindGameObjectWithTag("Score");
+        livesCanvas = GameObject.FindGameObjectWithTag("Lives");
         Score = scoreCanvas.GetComponentInChildren<Text>();
+        heartImages = livesCanvas.GetComponentsInChildren<Image>();
+
+        setLives();
     }
 
     // Update is called once per frame
@@ -63,7 +72,8 @@ public class PlayerPrefs : MonoBehaviour
     public void KillPlayer()
     {
         onDeath.OnPlayerDeath();
-
+        currentLives--;
+        updateLives();
         fireSpawnScript.resetFireSpawn();
         fireSpawnScript.clearFire();
     }
@@ -72,13 +82,36 @@ public class PlayerPrefs : MonoBehaviour
         if (avatar == "Civilian")
         {
             playerAnimator.runtimeAnimatorController = civilianController;
+            maxLives = 1;
         }
         else if (avatar == "Messenger") 
         {
             playerAnimator.runtimeAnimatorController = messengerController;
+            maxLives = 2;
         } else 
         {
             playerAnimator.runtimeAnimatorController = veteranController;
+            maxLives = 3;
         }
+    }
+
+
+    private void setLives() {
+        for(int i = 0; i < maxLives; i++) {
+           heartImages[i].enabled = true;
+        } 
+    }
+
+    private void updateLives() {
+        for(int i = 0; i < maxLives; i++) {
+            if (i < currentLives)
+            {
+                heartImages[i].enabled = true;
+                
+            } else
+            {
+                heartImages[i].enabled = false;
+            }
+        } 
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - FireParent
   - Score
   - Bullet
+  - Lives
   layers:
   - Default
   - TransparentFX
