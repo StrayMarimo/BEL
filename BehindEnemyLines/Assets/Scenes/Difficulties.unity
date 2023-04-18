@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073750178}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1149.18, y: -37.214, z: 0}
+  m_LocalPosition: {x: -1324.5, y: -45.43, z: 0}
   m_LocalScale: {x: 2.7209978, y: 0.22674981, z: 1.3604989}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -622,7 +622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335360248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -559.02905, y: -37.155224, z: 0}
+  m_LocalPosition: {x: -524.49, y: -45.39, z: 0}
   m_LocalScale: {x: 2.7209978, y: 0.22674981, z: 1.3604989}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -940,13 +940,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1091418310}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartLevel
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Veteran
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &1486729635
@@ -1097,7 +1097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653305251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -847.9, y: -37.152, z: 0}
+  m_LocalPosition: {x: -1023, y: -45.31, z: 0}
   m_LocalScale: {x: 2.7209978, y: 0.22674981, z: 1.3604989}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1263,13 +1263,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1091418310}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartLevel
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Messenger
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!222 &1757644345
@@ -1338,8 +1338,8 @@ RectTransform:
   m_GameObject: {fileID: 1781460302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.36751226, y: 4.410147, z: 0.7350245}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.5145171, y: 4.410147, z: 0.7350245}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1335360249}
   m_Father: {fileID: 1091418314}
@@ -1397,13 +1397,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1091418310}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartLevel
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Civilian
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &1781460306

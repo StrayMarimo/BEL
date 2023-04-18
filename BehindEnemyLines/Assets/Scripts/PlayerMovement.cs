@@ -2,6 +2,7 @@
 // handles player movement and transition animations
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float Move;
     public float jump;
     public bool isInBulletZone;
+    public string avatar = "";
     private int jumpableCount = 0;  // counter to keep track of how many jumpable surfaces are below the player
     private bool canJump {get { return jumpableCount > 0;}} // a property indicating whether the player can jump
     private int score = 0;
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        avatar = MainMenu.avatar;
+        Debug.Log("Avatar: " + avatar);
         // Get references to the game objects and components
         rb = GetComponent<Rigidbody2D>();
         p_Animator = GetComponent<Animator>();
