@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     // Start Button
 
+    public static string avatar;
     public void LoadGame() {
         SceneManager.LoadScene(1);
     }
@@ -19,11 +20,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
-    public void StartLevel() {
-        SceneManager.LoadScene(4);
+    public void StartLevel(string _avatar) {
+        avatar = _avatar;
+        SceneManager.LoadScene(4, LoadSceneMode.Single);
     }
 
-    public void SelectMessenger() {
-        
-    }
 }

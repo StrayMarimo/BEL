@@ -9,6 +9,10 @@ TagManager:
   - BulletZone
   - WallOfDeath
   - Fire
+  - FireParent
+  - Score
+  - Bullet
+  - Lives
   layers:
   - Default
   - TransparentFX

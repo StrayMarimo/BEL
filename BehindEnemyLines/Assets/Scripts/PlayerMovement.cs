@@ -1,28 +1,35 @@
 // attached to Player
 // handles player movement and transition animations
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private float Move;
     public float jump;
-    public bool isInBulletZone;
     private int jumpableCount = 0;  // counter to keep track of how many jumpable surfaces are below the player
     private bool canJump {get { return jumpableCount > 0;}} // a property indicating whether the player can jump
-
+    private int score = 0;
+    private float distance = 0;
     private Rigidbody2D rb;
     private SpriteRenderer p_SpriteRenderer;
     private Animator p_Animator;
-    float time = 0.5f;
+    private float time = 0.5f;
+    private PlayerPrefs playerPrefs;
+    [SerializeField]
+    Text Score;
+
+    public int totalScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Get references to the game objects and components
         rb = GetComponent<Rigidbody2D>();
         p_Animator = GetComponent<Animator>();
         p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
+        playerPrefs = gameObject.GetComponent<PlayerPrefs>();
     }
 
     // Update is called once per frame
@@ -43,8 +50,14 @@ public class PlayerMovement : MonoBehaviour
         } else if (Move > 0)
         {
             p_SpriteRenderer.flipX = false;
+            if (transform.position.x > distance){
+                distance = transform.position.x;
+                score += 1;
+            }
+               
         }
-
+        totalScore = score / 50;
+        PlayerPrefs.totalScore = totalScore;
         // Animations
         if (rb.velocity.x == 0 || !canJump)
         {
@@ -79,11 +92,6 @@ public class PlayerMovement : MonoBehaviour
             jumpableCount++;
         }
 
-        if (other.gameObject.CompareTag("BulletZone"))
-        {
-            // Player entered the bullet xone
-            isInBulletZone = true;
-        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -92,14 +100,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpableCount--; // reduces the jumpable count if the player exits a jumpable surface
         }
-
-        if (other.gameObject.CompareTag("BulletZone"))
-        {
-            // Player exited the bullet zone
-            isInBulletZone = false;
-        }
     }
-
-
 
 }

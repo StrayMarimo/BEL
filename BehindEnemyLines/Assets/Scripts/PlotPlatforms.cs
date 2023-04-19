@@ -20,8 +20,8 @@ public class PlotPlatforms : MonoBehaviour
         for (int i = 0; i < platforms; i++)
         {
             // Instantiate a platform at the current position
-            Instantiate(platform, position, transform.rotation);
-
+            var newPlatform = Instantiate(platform, position, transform.rotation);
+            newPlatform.transform.parent = transform;
             // Move the position to the right by the size of the platform
             position.x += platformSize;
         }
