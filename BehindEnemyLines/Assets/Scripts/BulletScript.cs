@@ -32,11 +32,16 @@ public class BulletScript : MonoBehaviour
     }
 
     // Handle the bullet colliding with other game objects
-    async private void OnCollisionEnter2D(Collision2D other)
+    async private void OnTriggerEnter2D(Collider2D other)
     {
         // If the bullet collides with the player, kill the player
         if (other.gameObject.CompareTag("Player"))
         {
+            bullets = GameObject.FindGameObjectsWithTag("Bullet");
+            foreach (GameObject bullet in bullets)
+            {
+                Destroy(bullet);
+            }
             animator = other.gameObject.GetComponent<Animator>();
 
             // Trigger the player's death animation
@@ -45,15 +50,16 @@ public class BulletScript : MonoBehaviour
             // Delay for 500 milliseconds to allow the death animation to play
             await Task.Delay(500);
 
-            bullets = GameObject.FindGameObjectsWithTag("Bullet");
+          
 
-            foreach (GameObject bullet in bullets) {
-                Destroy(bullet);
-            }
-            
             Player.GetComponent<PlayerPrefs>().KillPlayer();
         }
-        // Destroy the bullet
-        Destroy(gameObject);
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            // Destroy the bullet
+            Destroy(gameObject);
+        }
+
     }
 }
