@@ -17,10 +17,16 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer p_SpriteRenderer;
     private Animator p_Animator;
     private float time = 0.5f;
+    public float currentStamina = 100;
+    private float maxStamina = 100;
+    private float delayStamina;
+    private Canvas slider;
     private PlayerPrefs playerPrefs;
     [SerializeField]
     Text Score;
 
+    [SerializeField]
+    private Slider sliderStamina;
     public int totalScore = 0;
 
     // Start is called before the first frame update
@@ -30,11 +36,18 @@ public class PlayerMovement : MonoBehaviour
         p_Animator = GetComponent<Animator>();
         p_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         playerPrefs = gameObject.GetComponent<PlayerPrefs>();
+        sliderStamina = GameObject.Find("StaminaSlider").GetComponent<Slider>();
+        if (sliderStamina == null)
+            Debug.LogError("Stamina Slider Component not found.");
     }
 
     // Update is called once per frame
     void Update()
     {
+        sliderStamina.value = currentStamina;
+        slider =  GameObject.Find("Stamina").GetComponent<Canvas>();
+        slider.enabled = currentStamina < 100; 
+    
         // delay user from spamming jump button
         if (time > 0f)  
         {
@@ -63,18 +76,37 @@ public class PlayerMovement : MonoBehaviour
         {
             // Idle
             p_Animator.SetFloat("Speed", 0);
+            Debug.Log("Idle");
+            increaseStamina();
         } else if (!Input.GetKey(KeyCode.LeftShift)) 
         {
             // Walk
             p_Animator.SetFloat("Speed", 0.5f);
+            Debug.Log("Walk");
+            
             speed = 5;
+            increaseStamina();
         } else 
         {
-            // Run
-            p_Animator.SetFloat("Speed", 1);
-            speed = 10;
-        }
+            if (currentStamina > 0 && delayStamina <= 0) {
+                // Run
+                p_Animator.SetFloat("Speed", 1);
+                Debug.Log(transform.position);
+                decreaseStamina();
+          
 
+                Debug.Log("Run");
+                speed = 10;
+            } else {
+                // Walk
+                p_Animator.SetFloat("Speed", 0.5f);
+                Debug.Log("Walk");
+            
+                speed = 5; 
+                increaseStamina();
+            }
+          
+        }
         
         if(Input.GetButtonDown("Jump") && canJump && time <= 0) 
         {
@@ -101,5 +133,25 @@ public class PlayerMovement : MonoBehaviour
             jumpableCount--; // reduces the jumpable count if the player exits a jumpable surface
         }
     }
+
+    private void increaseStamina()
+    {
+        Debug.Log(delayStamina);
+        if (currentStamina < maxStamina && delayStamina <= 0f)
+            currentStamina++;
+        else if (currentStamina < maxStamina)
+            delayStamina -= Time.deltaTime;
+    }
+
+    private void decreaseStamina()
+    {
+
+        currentStamina--;
+        if (currentStamina <= 0){
+            delayStamina = 2f;
+        }
+         Debug.Log(delayStamina);
+    }
+
 
 }
