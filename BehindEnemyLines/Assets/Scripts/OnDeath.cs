@@ -19,7 +19,7 @@ public class OnDeath : MonoBehaviour
     public void OnPlayerDeath() 
     {
         Debug.Log("Player died.");
-
+        Player.GetComponents<AudioSource>()[2].Play();
         // Move player to starting position
         Player.transform.position = startPosition.transform.position;
         // Move camera to starting position
