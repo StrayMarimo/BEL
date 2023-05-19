@@ -2,6 +2,7 @@
 // handles camera movement
 using UnityEngine;
 
+
 public class CameraMovement : MonoBehaviour
 {
     /* New Camera movement */
@@ -31,6 +32,7 @@ public class CameraMovement : MonoBehaviour
         if (Player.transform.position.x < lowerLeft.x || Player.transform.position.y < lowerLeft.y)
         {
             Player.GetComponent<PlayerPrefs>().KillPlayer();
+          
         }
 
         // Set the target position as the position of the Target game object, but maintain the same Y and Z positions as the bullet

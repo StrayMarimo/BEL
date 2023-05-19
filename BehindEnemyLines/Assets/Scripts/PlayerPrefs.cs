@@ -72,16 +72,21 @@ public class PlayerPrefs : MonoBehaviour
 
     public void KillPlayer()
     {
-        onDeath.OnPlayerDeath();
         currentLives--;
-        updateLives();
-        fireSpawnScript.resetFireSpawn();
-        fireSpawnScript.clearFire();
-
-        if (currentLives == 0)
+         if (currentLives == 0)
         {
             SceneManager.LoadScene(5, LoadSceneMode.Single);
+        } 
+        else
+        {
+            onDeath.OnPlayerDeath();
+            
+            updateLives();
+            fireSpawnScript.resetFireSpawn();
+            fireSpawnScript.clearFire();
         }
+
+       
     }
 
     private void SetAvatar() {
