@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     private Slider sliderStamina;
     public int totalScore = 0;
 
+    public AudioClip jumpSfx;
+    public AudioClip lowStaminaSfx;
+    private AudioSource[] playerAudios;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         sliderStamina = GameObject.Find("StaminaSlider").GetComponent<Slider>();
         if (sliderStamina == null)
             Debug.LogError("Stamina Slider Component not found.");
+        playerAudios = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         sliderStamina.value = currentStamina;
         slider =  GameObject.Find("Stamina").GetComponent<Canvas>();
         slider.enabled = currentStamina < 100; 
-    
+           
         // delay user from spamming jump button
         if (time > 0f)  
         {
@@ -95,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 // Walk
                 p_Animator.SetFloat("Speed", 0.5f);
-            
+                 
                 speed = 5; 
                 increaseStamina();
             }
@@ -107,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
             // Jump
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             time = 0.5f;
+            playerAudios[0].Play();
         }
     }
 
@@ -130,16 +136,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void increaseStamina()
     {
-        if (currentStamina < maxStamina && delayStamina <= 0f)
-            currentStamina++;
+        if (currentStamina < maxStamina && delayStamina <= 0f) {
+              currentStamina++;
+        } 
         else if (currentStamina < maxStamina)
             delayStamina -= Time.deltaTime;
+        else if (currentStamina >= maxStamina && playerAudios[1].isPlaying) 
+              playerAudios[1].Stop();
     }
 
     private void decreaseStamina()
     {
 
         currentStamina--;
+        if (currentStamina < 50)
+            playerAudios[1].Play();
         if (currentStamina <= 0){
             delayStamina = 2f;
         }
