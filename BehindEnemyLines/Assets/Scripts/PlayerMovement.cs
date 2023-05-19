@@ -124,6 +124,11 @@ public class PlayerMovement : MonoBehaviour
             jumpableCount++;
         }
 
+        if (other.gameObject.CompareTag("flag"))
+        {
+              SceneManager.LoadScene(6, LoadSceneMode.Single);
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D other)

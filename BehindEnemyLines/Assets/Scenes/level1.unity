@@ -3215,8 +3215,9 @@ MonoBehaviour:
   XPos: 8.884
   YPos: 5
   platformSize: 17.768
-  platforms: 20
+  platforms: 1
   platform: {fileID: 7763851248178349355, guid: 4b5720475e99e40f89fe16d11d017b95, type: 3}
+  baseEnd: {fileID: 5367197519033630568, guid: 42598a3549f8b4658a4a0bcb8966ba68, type: 3}
 --- !u!4 &1614091474
 Transform:
   m_ObjectHideFlags: 0

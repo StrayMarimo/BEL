@@ -16,13 +16,7 @@ public class FinalScore : MonoBehaviour
     {
         score = GetComponentInChildren<Text>();
         totalScore = PlayerPrefs.totalScore;
-        Debug.Log("GF: " + totalScore);
         score.text = "Score: " + totalScore.ToString();      
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

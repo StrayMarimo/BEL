@@ -22,8 +22,7 @@ public class EnemyShooting : MonoBehaviour
     void Update()
     {
         // Increment the timer by the time elapsed since the last frame
-        timer += Time.deltaTime;
-        Debug.Log(Player.GetComponent<PlayerPrefs>().isInBulletZone);
+        timer += Time.deltaTime; 
         // If the player is in the bullet zone and the timer has reached 2 seconds
         if (Player.GetComponent<PlayerPrefs>().isInBulletZone && timer > 2 )
         {

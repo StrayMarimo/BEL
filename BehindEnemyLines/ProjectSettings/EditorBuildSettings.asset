@@ -25,6 +25,9 @@ EditorBuildSettings:
     guid: 1f33a0aee37504dbea1afdf6f256bb89
   - enabled: 1
     path: Assets/Scenes/DeadScreen.unity
+    guid: 729fd6e9a31ba4d578834b0cd93b5642
+  - enabled: 1
+    path: Assets/Scenes/LevelPassed.unity
     guid: a07431fb595664ad0bd50babc8919312
   - enabled: 1
     path: Assets/Scenes/level2.unity

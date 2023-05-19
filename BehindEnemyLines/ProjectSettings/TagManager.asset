@@ -13,6 +13,8 @@ TagManager:
   - Score
   - Bullet
   - Lives
+  - Heart
+  - flag
   layers:
   - Default
   - TransparentFX
