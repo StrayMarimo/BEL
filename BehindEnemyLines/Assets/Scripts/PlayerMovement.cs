@@ -76,13 +76,11 @@ public class PlayerMovement : MonoBehaviour
         {
             // Idle
             p_Animator.SetFloat("Speed", 0);
-            Debug.Log("Idle");
             increaseStamina();
         } else if (!Input.GetKey(KeyCode.LeftShift)) 
         {
             // Walk
             p_Animator.SetFloat("Speed", 0.5f);
-            Debug.Log("Walk");
             
             speed = 5;
             increaseStamina();
@@ -91,16 +89,12 @@ public class PlayerMovement : MonoBehaviour
             if (currentStamina > 0 && delayStamina <= 0) {
                 // Run
                 p_Animator.SetFloat("Speed", 1);
-                Debug.Log(transform.position);
                 decreaseStamina();
           
-
-                Debug.Log("Run");
                 speed = 10;
             } else {
                 // Walk
                 p_Animator.SetFloat("Speed", 0.5f);
-                Debug.Log("Walk");
             
                 speed = 5; 
                 increaseStamina();
@@ -136,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void increaseStamina()
     {
-        Debug.Log(delayStamina);
         if (currentStamina < maxStamina && delayStamina <= 0f)
             currentStamina++;
         else if (currentStamina < maxStamina)
@@ -150,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
         if (currentStamina <= 0){
             delayStamina = 2f;
         }
-         Debug.Log(delayStamina);
     }
 
 

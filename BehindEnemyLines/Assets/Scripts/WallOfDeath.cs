@@ -9,9 +9,12 @@ public class WallOfDeath : MonoBehaviour
     public Transform startPointTransform; // The starting point of the level
     public Collider2D wallCollider; // The collider for the wall
     private GameObject Player;
+    private AudioSource soundFlame;
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        soundFlame = GetComponent<AudioSource>();
+        soundFlame.Play();
         // startPointTransform.position = this.transform.position;
         // Ensure that the player and start point are properly assigned
         if (Player.transform == null || startPointTransform == null)
@@ -51,6 +54,13 @@ public class WallOfDeath : MonoBehaviour
                     transform.position.y, 
                     transform.position.z
                 );
+            if (Player.transform.position.x - transform.position.x < 10f) 
+            {
+                soundFlame.volume = soundFlame.volume + 0.05f;
+            }
+            else{ 
+                soundFlame.volume = soundFlame.volume - 0.05f;
+            }
         }
     }
 }
