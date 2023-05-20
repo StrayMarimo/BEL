@@ -33,7 +33,6 @@ public class PlayerPrefs : MonoBehaviour
     public RuntimeAnimatorController veteranController;
     public Image[] heartImages;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +71,7 @@ public class PlayerPrefs : MonoBehaviour
 
     public void KillPlayer()
     {
+        
         currentLives--;
          if (currentLives == 0)
         {
@@ -79,6 +79,7 @@ public class PlayerPrefs : MonoBehaviour
         } 
         else
         {
+            totalScore -= 20;
             onDeath.OnPlayerDeath();
             
             updateLives();

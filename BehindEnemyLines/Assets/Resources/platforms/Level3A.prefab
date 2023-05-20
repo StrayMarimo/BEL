@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237ee51e24b4848649070b76eda54474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 1
+  columns: 3
   rows: 1
   isWall: 0
   roadTile: {fileID: 1468494524111686059, guid: bb544b30c13f445d9ac3b504beff5a33, type: 3}
@@ -1242,7 +1242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5131001505863794999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.16, y: -7.84, z: -2}
+  m_LocalPosition: {x: 1.02, y: -7.84, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237ee51e24b4848649070b76eda54474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 2
+  columns: 3
   rows: 1
   isWall: 0
   roadTile: {fileID: 1468494524111686059, guid: bb544b30c13f445d9ac3b504beff5a33, type: 3}
@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5131001506593676600}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.51, y: -5.17, z: -2}
+  m_LocalPosition: {x: 12.77, y: -5.68, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237ee51e24b4848649070b76eda54474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 3
+  columns: 2
   rows: 1
   isWall: 0
   roadTile: {fileID: 1468494524111686059, guid: bb544b30c13f445d9ac3b504beff5a33, type: 3}

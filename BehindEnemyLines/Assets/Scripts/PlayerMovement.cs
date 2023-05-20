@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             p_SpriteRenderer.flipX = false;
             if (transform.position.x > distance){
                 distance = transform.position.x;
-                score += 1;
+                score += 10;
             }
                
         }
