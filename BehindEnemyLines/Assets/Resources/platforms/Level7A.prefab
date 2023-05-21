@@ -299,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4956528358660537103}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.92, y: -10.02, z: -0.0051989555}
+  m_LocalPosition: {x: 10.66, y: -10.02, z: -0.0051989555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237ee51e24b4848649070b76eda54474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 2
+  columns: 1
   rows: 9
   isWall: 1
   roadTile: {fileID: 3119062787936218171, guid: dfa181e2c0acb4a48ab745b5bd8814e7, type: 3}
@@ -353,6 +353,54 @@ Transform:
   m_Father: {fileID: 2207593655354511338}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5370312288349636291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8832890403257504146}
+  - component: {fileID: 1846055824520611027}
+  m_Layer: 0
+  m_Name: Platform (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8832890403257504146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370312288349636291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.68, y: -7.93, z: 2.0566661}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6356738395393578213}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1846055824520611027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370312288349636291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237ee51e24b4848649070b76eda54474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 1
+  rows: 1
+  isWall: 0
+  roadTile: {fileID: 1468494524111686059, guid: bb544b30c13f445d9ac3b504beff5a33, type: 3}
 --- !u!1 &6084282739501017192
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +707,7 @@ Transform:
   - {fileID: 9178218175004611996}
   - {fileID: 7742449776902808479}
   - {fileID: 3802054458463584906}
+  - {fileID: 8832890403257504146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -687,7 +736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6356738396445201440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.11, y: -10.02, z: -0.0051989555}
+  m_LocalPosition: {x: 14.34, y: -10.02, z: -0.0051989555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

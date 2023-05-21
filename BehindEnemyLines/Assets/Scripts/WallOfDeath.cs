@@ -57,9 +57,18 @@ public class WallOfDeath : MonoBehaviour
             if (Player.transform.position.x - transform.position.x < 10f) 
             {
                 soundFlame.volume = soundFlame.volume + 0.05f;
+                if (Player.transform.position.x - transform.position.x < 5f) 
+                    speed = 1f;
+                if (Player.transform.position.x - transform.position.x < 2f) 
+                    speed = 0.5f;
             }
             else{ 
                 soundFlame.volume = soundFlame.volume - 0.05f;
+                if (Player.transform.position.x - transform.position.x > 15f)
+                    speed = 5f;
+                else if (Player.transform.position.x - transform.position.x > 20f) 
+                    speed = 8f;    
+                else speed = 2f;  
             }
         }
     }
