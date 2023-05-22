@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start Button
-
+    
+   
+    void Start()
+    {
+        Cursor.visible = true;
+    }
     public static string avatar;
     public static int level;
     public void LoadGame() {
