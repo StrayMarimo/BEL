@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class animations : MonoBehaviour
 {
     // Start is called before the first frame update
-    async void Start()
+   public GameObject Option_1;
+ 
+    IEnumerator Start()
     {
-        gameObject.SetActive(false);
-        await Task.Delay(2500);
-        gameObject.SetActive(true);
+        Option_1.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        Option_1.SetActive(true);
     }
 }
