@@ -1,6 +1,7 @@
 // attached to Bullet prefab
 // handles bullet movement and collision
-using System.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -32,7 +33,7 @@ public class BulletScript : MonoBehaviour
     }
 
     // Handle the bullet colliding with other game objects
-    async private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // If the bullet collides with the player, kill the player
         if (other.gameObject.CompareTag("Player"))
@@ -47,10 +48,7 @@ public class BulletScript : MonoBehaviour
             // Trigger the player's death animation
             animator.SetTrigger("Dead");
 
-            // Delay for 500 milliseconds to allow the death animation to play
-            await Task.Delay(500);
-
-          
+            DelayRespawn(); 
 
             Player.GetComponent<PlayerPrefs>().KillPlayer();
         }
@@ -60,6 +58,13 @@ public class BulletScript : MonoBehaviour
             // Destroy the bullet
             Destroy(gameObject);
         }
+
+    }
+
+    IEnumerator DelayRespawn()
+    {
+           // Delay for 500 milliseconds to allow the death animation to play
+            yield return new WaitForSeconds(0.5f);
 
     }
 }
